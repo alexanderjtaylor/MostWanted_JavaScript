@@ -140,8 +140,17 @@ function displayPeople(people) {
 function displayPerson(person) {
     let personInfo = `First Name: ${person.firstName}\n`;
     personInfo += `Last Name: ${person.lastName}\n`;
+    personInfo += `Gender: ${person.gender}\n`;
+    personInfo += `DOB: ${person.dob}\n`;
+    personInfo += `Height: ${person.height}\n`;
+    personInfo += `Weight: ${person.weight}\n`;
+    personInfo += `Eye Color: ${person.eyeColor}\n`;
+    personInfo += `Occupation: ${person.occupation}\n`;
+    personInfo += `Parents: ${person.parents}\n`;
+    personInfo += `Current Spouse: ${person.currentSpouse}\n`;
     //! TODO #1a: finish getting the rest of the information to display //////////////////////////////////////////
     alert(personInfo);
+    return personInfo
 }
 // End of displayPerson()
 
@@ -184,3 +193,29 @@ function chars(input) {
 
 //////////////////////////////////////////* End Of Starter Code *//////////////////////////////////////////
 // Any additional functions can be written below this line 👇. Happy Coding! 😁
+
+
+
+function findPersonFamily(person, array){
+    let personFamily = array.filter(function(people) { 
+        if (people.parents.includes(person.parents)) {
+            return true
+        }
+        if (people.currentSpouse.includes(person.id)) {
+            return true
+        }
+        if (people.id.includes(person.parents)) {
+            return true
+        }
+    })
+    return personFamily
+}
+
+function findPersonDescendants(person, array){
+    let personDescendants = array.filter(function(people) {
+        if (people.parents === person.id) {
+            personDescendants = array.concat(findPersonDescendants(people))
+        }
+    })
+    return personDescendants
+}
