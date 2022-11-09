@@ -73,7 +73,8 @@ function mainMenu(person, people) {
             //! TODO #2: Declare a findPersonFamily function //////////////////////////////////////////
             // HINT: Look for a people-collection stringifier utility function to help
             let personFamily = findPersonFamily(person[0], people);
-            alert(personFamily);
+            let family = displayPeople(personFamily)
+            alert(family);
             break;
         case "descendants":
             //! TODO #3: Declare a findPersonDescendants function //////////////////////////////////////////
@@ -122,13 +123,11 @@ function searchByName(people) {
  * @param {Array} people        A collection of person objects.
  */
 function displayPeople(people) {
-    alert(
-        people
+   return people
             .map(function (person) {
                 return `${person.firstName} ${person.lastName}`;
             })
             .join("\n")
-    );
 }
 // End of displayPeople()
 
@@ -149,7 +148,6 @@ function displayPerson(person) {
     personInfo += `Parents: ${person.parents}\n`;
     personInfo += `Current Spouse: ${person.currentSpouse}\n`;
     //! TODO #1a: finish getting the rest of the information to display //////////////////////////////////////////
-    alert(personInfo);
     return personInfo
 }
 // End of displayPerson()
@@ -197,15 +195,15 @@ function chars(input) {
 
 
 function findPersonFamily(person, array){
-    let personFamily = array.filter(function(people) { 
-        if (people.parents.includes(person.parents)) {
-            return true
-        }
-        if (people.currentSpouse.includes(person.id)) {
-            return true
-        }
-        if (people.id.includes(person.parents)) {
-            return true
+    let personFamily = array.filter(function(array) { 
+        if (array.parents === person.parents && array.id != person.id) {
+            return true;
+        } else if (array.currentSpouse === person.id) {
+            return true;
+        } else if (array.id === person.parents) {
+            return true;
+        } else if (array.parents[0] === person.id || array.parents[1] === person.id) {
+            return true;
         }
     })
     return personFamily
@@ -219,3 +217,4 @@ function findPersonDescendants(person, array){
     })
     return personDescendants
 }
+
