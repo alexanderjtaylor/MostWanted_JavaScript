@@ -267,10 +267,9 @@ function searchMulti(people){
 
 
 
-function findPeopleWithTraitValue(people, singleTrait){
-    let singleTraitValue = promptFor(`What value do you want to search for in ${singleTrait}?`, chars);
+function findPeopleWithTraitValue(people, singleTrait, singleTraitValue){
     let peopleWithTraitValue = people.filter(function(el) {
-        if (el.singleTrait == singleTraitValue) {
+        if (el[singleTrait] == singleTraitValue) {
             return true;
         }
     });
@@ -278,12 +277,10 @@ function findPeopleWithTraitValue(people, singleTrait){
 }
 
 
-
-
-
 function searchSingle(people) {
     let singleTrait = promptFor("What trait do you want to search by?", singleTraitSearch).toLowerCase();
-    let peopleWithTraitValueArray = findPeopleWithTraitValue(people, singleTrait)
+    let singleTraitValue = promptFor(`What value do you want to search for in ${singleTrait}?`, chars);
+    let peopleWithTraitValueArray = findPeopleWithTraitValue(people, singleTrait, singleTraitValue)
     let displayPeopleWithTraitValue = displayPeople(peopleWithTraitValueArray);
     return displayPeopleWithTraitValue;
 }
