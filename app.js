@@ -32,6 +32,7 @@ function app(people) {
             //! TODO #4: Declare a searchByTraits (multiple traits) function //////////////////////////////////////////
                 //! TODO #4a: Provide option to search for single or multiple //////////////////////////////////////////
             searchResults = searchByTraits(people);
+            alert(searchResults);
             break;
         default:
             // Re-initializes the app() if neither case was hit above. This is an instance of recursion.
@@ -220,3 +221,52 @@ function findPersonDescendants(person, array, people){
     return personDescendants
 }
 
+
+
+
+function searchByTraits(people){
+    let userInput = promptFor("Do you want to search by a 'single' trait or 'multiple' traits?", singleMultiple).toLowerCase();
+    let searchTrait;
+    switch (userInput) {
+        case "single":
+            searchTrait = searchSingle(people);
+            return searchTrait
+        case "multiple":
+            //! TODO #4: Declare a searchByTraits (multiple traits) function //////////////////////////////////////////
+                //! TODO #4a: Provide option to search for single or multiple //////////////////////////////////////////
+            searchTrait = searchMulti(people);
+            break;
+        default:
+            // Re-initializes the app() if neither case was hit above. This is an instance of recursion.
+            app(people);
+            break;
+    }
+}
+
+function singleMultiple(input){
+    return input.toLowerCase() === "single" || input.toLowerCase() === "multiple";
+}
+
+function searchMulti(people){
+
+}
+
+function searchSingle(people) {
+    let singleTrait = promptFor("What trait do you want to search by?", singleTraitSearch).toLowerCase();
+    let singleTraitValue = promptFor(`What value do you want to search for in ${singleTrait}?`, chars);
+    let foundPeopleWithTraitValue = people.filter(function (people) {
+        if (people.singleTrait === singleTraitValue) {
+            return true;
+        }
+    });
+    let displayPeopleWithTraitValue = displayPeople(foundPeopleWithTraitValue);
+    return displayPeopleWithTraitValue;
+}
+
+function singleTraitSearch(input){
+    return input.toLowerCase() === "id" || input.toLowerCase() === "first name" || input.toLowerCase() === "last name" || input.toLowerCase() === "gender" || input.toLowerCase() === "dob" || input.toLowerCase() === "height" || input.toLowerCase() === "weight" || input.toLowerCase() === "eye color" || input.toLowerCase() === "occupation" || input.toLowerCase() === "parents" || input.toLowerCase() === "current spouse"
+}
+
+function singleTraitValueSearch(input){
+
+}
