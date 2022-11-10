@@ -211,14 +211,23 @@ function findPersonFamily(person, array){
     return personFamily
 }
 
-function findPersonDescendants(person, array, people){
-    let personDescendants = array.filter(function(array, people) {
-        if (array.parents[0] === person.id || array.parents[1] === person.id) {
-            personDescendants = array.concat(findPersonDescendants(array, people))
-            return true;
+function findChildren(person, people){
+    let childrenArray = people.filter(function(el) {
+        for (let i = 0; i < el.parents.length; i++){
+            if(el.parents[i] == person.id){
+                return true
+            }
         }
-    })
-    return personDescendants
+    });
+    return childrenArray
+}
+
+function findPersonDescendants(person, people){
+    let personDescendants = findChildren(person, people)
+        for (let i = 0; i < personDescendants.length; i++) {
+            personDescendants = personDescendants.concat(findPersonDescendants(personDescendants[i], people));
+        }
+        return personDescendants
 }
 
 
@@ -251,15 +260,31 @@ function searchMulti(people){
 
 }
 
-function searchSingle(people) {
-    let singleTrait = promptFor("What trait do you want to search by?", singleTraitSearch).toLowerCase();
+
+
+
+
+
+
+
+function findPeopleWithTraitValue(people, singleTrait){
     let singleTraitValue = promptFor(`What value do you want to search for in ${singleTrait}?`, chars);
-    let foundPeopleWithTraitValue = people.filter(function (people) {
-        if (people.singleTrait === singleTraitValue) {
+    let peopleWithTraitValue = people.filter(function(el) {
+        if (el.singleTrait == singleTraitValue) {
             return true;
         }
     });
-    let displayPeopleWithTraitValue = displayPeople(foundPeopleWithTraitValue);
+    return peopleWithTraitValue
+}
+
+
+
+
+
+function searchSingle(people) {
+    let singleTrait = promptFor("What trait do you want to search by?", singleTraitSearch).toLowerCase();
+    let peopleWithTraitValueArray = findPeopleWithTraitValue(people, singleTrait)
+    let displayPeopleWithTraitValue = displayPeople(peopleWithTraitValueArray);
     return displayPeopleWithTraitValue;
 }
 
