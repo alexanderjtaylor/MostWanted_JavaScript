@@ -273,29 +273,99 @@ function traitSearch(input){
     return input === "id" || input === "firstName" || input === "lastName" || input === "gender" || input === "dob" || input === "height" || input === "weight" || input === "eye color" || input === "occupation" || input === "parents" || input === "currentSpouse"
 }
 
-function addAnotherTrait(){
-    let addTrait = promptFor("Do you want to add another trait to search by?", yesNo).toLowerCase()
-    return addTrait
-}
-
 function searchMulti(people){
-    let multiTraitOne = promptFor("What is the first trait you want to search by?", traitSearch);
-    let multiTraitValueOne = promptFor(`What value do you want to search for in ${multiTraitOne}?`, chars);
-    let multiTraitTwo = promptFor("What is the second trait you want to search by?", traitSearch);
-    let multiTraitValueTwo = promptFor(`What value do you want to search for in ${multiTraitTwo}?`, chars);
-    let userAddThirdTrait = addAnotherTrait()
-    if (userAddThirdTrait === "yes"){
+    let numTraitsToSearch = promptFor("How many traits do you want to search by, 2, 3, 4, or 5?", numTraitsToSearchBy);
+    if (numTraitsToSearch == 2){
+        let multiTraitOne = promptFor("What is the first trait you want to search by?", traitSearch);
+        let multiTraitValueOne = promptFor(`What value do you want to search for in ${multiTraitOne}?`, chars);
+        let multiTraitTwo = promptFor("What is the second trait you want to search by?", traitSearch);
+        let multiTraitValueTwo = promptFor(`What value do you want to search for in ${multiTraitTwo}?`, chars);
+
+        let peopleMultiTraitOne = findPeopleWithTraitValueArray(people, multiTraitOne, multiTraitValueOne);
+        let peopleMultiTraitTwo = findPeopleWithTraitValueArray(people, multiTraitTwo, multiTraitValueTwo);
+
+        let arrayWithAllTraits = compareArrays(peopleMultiTraitOne, peopleMultiTraitTwo);
+        return arrayWithAllTraits;
+
+    } else if (numTraitsToSearch == 3){
+        let multiTraitOne = promptFor("What is the first trait you want to search by?", traitSearch);
+        let multiTraitValueOne = promptFor(`What value do you want to search for in ${multiTraitOne}?`, chars);
+        let multiTraitTwo = promptFor("What is the second trait you want to search by?", traitSearch);
+        let multiTraitValueTwo = promptFor(`What value do you want to search for in ${multiTraitTwo}?`, chars);
         let multiTraitThree = promptFor("What is the third trait you want to search by?", traitSearch);
         let multiTraitValueThree = promptFor(`What value do you want to search for in ${multiTraitThree}?`, chars);
-    }
-    let userAddForthTrait = addAnotherTrait()
-    if (userAddForthTrait === "yes"){
+
+        let peopleMultiTraitOne = findPeopleWithTraitValueArray(people, multiTraitOne, multiTraitValueOne);
+        let peopleMultiTraitTwo = findPeopleWithTraitValueArray(people, multiTraitTwo, multiTraitValueTwo);
+        let peopleMultiTraitThree = findPeopleWithTraitValueArray(people, multiTraitThree, multiTraitValueThree);
+
+        let comparedArray = compareArrays(peopleMultiTraitOne, peopleMultiTraitTwo);
+        let arrayWithAllTraits = compareArrays(comparedArray, peopleMultiTraitThree);
+        return arrayWithAllTraits;
+
+    } else if (numTraitsToSearch == 4){
+        let multiTraitOne = promptFor("What is the first trait you want to search by?", traitSearch);
+        let multiTraitValueOne = promptFor(`What value do you want to search for in ${multiTraitOne}?`, chars);
+        let multiTraitTwo = promptFor("What is the second trait you want to search by?", traitSearch);
+        let multiTraitValueTwo = promptFor(`What value do you want to search for in ${multiTraitTwo}?`, chars);
+        let multiTraitThree = promptFor("What is the third trait you want to search by?", traitSearch);
+        let multiTraitValueThree = promptFor(`What value do you want to search for in ${multiTraitThree}?`, chars);
         let multiTraitFour = promptFor("What is the forth trait you want to search by?", traitSearch);
         let multiTraitValueFour = promptFor(`What value do you want to search for in ${multiTraitFour}?`, chars);
-    }
-    let userAddFifthTrait = addAnotherTrait()
-    if (userAddFifthTrait === "yes"){
+
+        let peopleMultiTraitOne = findPeopleWithTraitValueArray(people, multiTraitOne, multiTraitValueOne);
+        let peopleMultiTraitTwo = findPeopleWithTraitValueArray(people, multiTraitTwo, multiTraitValueTwo);
+        let peopleMultiTraitThree = findPeopleWithTraitValueArray(people, multiTraitThree, multiTraitValueThree);
+        let peopleMultiTraitFour = findPeopleWithTraitValueArray(people, multiTraitFour, multiTraitValueFour);
+
+        let comparedArray = compareArrays(peopleMultiTraitOne, peopleMultiTraitTwo);
+        let comparedArrayTwo = compareArrays(comparedArray, peopleMultiTraitThree);
+        let arrayWithAllTraits = compareArrays(comparedArrayTwo, peopleMultiTraitFour);
+        return arrayWithAllTraits;
+
+    } else if (numTraitsToSearch == 5){
+        let multiTraitOne = promptFor("What is the first trait you want to search by?", traitSearch);
+        let multiTraitValueOne = promptFor(`What value do you want to search for in ${multiTraitOne}?`, chars);
+        let multiTraitTwo = promptFor("What is the second trait you want to search by?", traitSearch);
+        let multiTraitValueTwo = promptFor(`What value do you want to search for in ${multiTraitTwo}?`, chars);
+        let multiTraitThree = promptFor("What is the third trait you want to search by?", traitSearch);
+        let multiTraitValueThree = promptFor(`What value do you want to search for in ${multiTraitThree}?`, chars);
+        let multiTraitFour = promptFor("What is the forth trait you want to search by?", traitSearch);
+        let multiTraitValueFour = promptFor(`What value do you want to search for in ${multiTraitFour}?`, chars);
         let multiTraitFive = promptFor("What is the fifth trait you want to search by?", traitSearch);
         let multiTraitValueFive = promptFor(`What value do you want to search for in ${multiTraitFive}?`, chars);
-    }
+
+        let peopleMultiTraitOne = findPeopleWithTraitValueArray(people, multiTraitOne, multiTraitValueOne);
+        let peopleMultiTraitTwo = findPeopleWithTraitValueArray(people, multiTraitTwo, multiTraitValueTwo);
+        let peopleMultiTraitThree = findPeopleWithTraitValueArray(people, multiTraitThree, multiTraitValueThree);
+        let peopleMultiTraitFour = findPeopleWithTraitValueArray(people, multiTraitFour, multiTraitValueFour);
+        let peopleMultiTraitFive = findPeopleWithTraitValueArray(people, multiTraitFive, multiTraitValueFive);
+
+        let comparedArray = compareArrays(peopleMultiTraitOne, peopleMultiTraitTwo);
+        let comparedArrayTwo = compareArrays(comparedArray, peopleMultiTraitThree);
+        let comparedArrayThree = compareArrays(comparedArrayTwo, peopleMultiTraitFour);
+        let arrayWithAllTraits = compareArrays(comparedArrayThree, peopleMultiTraitFive);
+        return arrayWithAllTraits;
+
+    }  
+}
+
+function findPeopleWithTraitValueArray(people, x, y){
+    let peopleWithTraitValue = people.filter(function(el) {
+        if (el[x] == y) {
+            return true;
+        }
+    });
+    return peopleWithTraitValue
+}
+
+function numTraitsToSearchBy(input){
+    return input == "2" || input == "3" || input == "4" || input == "5";
+}
+
+function compareArrays(x, y){
+    let arrayOne = x
+    let arrayTwo = y
+    let z = _.intersection(arrayOne, arrayTwo);
+    return z
 }
