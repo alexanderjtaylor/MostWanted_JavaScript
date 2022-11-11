@@ -196,6 +196,7 @@ function chars(input) {
 
 
 
+
 function findPersonFamily(person, array){
     let personFamily = array.filter(function(array) { 
         if (array.parents === person.parents && array.id != person.id) {
@@ -230,9 +231,6 @@ function findPersonDescendants(person, people){
         return personDescendants
 }
 
-
-
-
 function searchByTraits(people){
     let userInput = promptFor("Do you want to search by a 'single' trait or 'multiple' traits?", singleMultiple).toLowerCase();
     let searchTrait;
@@ -241,8 +239,6 @@ function searchByTraits(people){
             searchTrait = searchSingle(people);
             return searchTrait
         case "multiple":
-            //! TODO #4: Declare a searchByTraits (multiple traits) function //////////////////////////////////////////
-                //! TODO #4a: Provide option to search for single or multiple //////////////////////////////////////////
             searchTrait = searchMulti(people);
             return searchTrait
         default:
@@ -256,10 +252,6 @@ function singleMultiple(input){
     return input.toLowerCase() === "single" || input.toLowerCase() === "multiple";
 }
 
-function searchMulti(people){
-
-}
-
 function findPeopleWithTraitValue(people, singleTrait, singleTraitValue){
     let peopleWithTraitValue = people.filter(function(el) {
         if (el[singleTrait] == singleTraitValue) {
@@ -269,19 +261,41 @@ function findPeopleWithTraitValue(people, singleTrait, singleTraitValue){
     return peopleWithTraitValue
 }
 
-
 function searchSingle(people) {
-    let singleTrait = promptFor("What trait do you want to search by?", singleTraitSearch);
+    let singleTrait = promptFor("What trait do you want to search by?", traitSearch);
     let singleTraitValue = promptFor(`What value do you want to search for in ${singleTrait}?`, chars);
     let peopleWithTraitValueArray = findPeopleWithTraitValue(people, singleTrait, singleTraitValue)
     let displayPeopleWithTraitValue = displayPeople(peopleWithTraitValueArray);
     return displayPeopleWithTraitValue;
 }
 
-function singleTraitSearch(input){
+function traitSearch(input){
     return input === "id" || input === "firstName" || input === "lastName" || input === "gender" || input === "dob" || input === "height" || input === "weight" || input === "eye color" || input === "occupation" || input === "parents" || input === "currentSpouse"
 }
 
-function singleTraitValueSearch(input){
+function addAnotherTrait(){
+    let addTrait = promptFor("Do you want to add another trait to search by?", yesNo).toLowerCase()
+    return addTrait
+}
 
+function searchMulti(people){
+    let multiTraitOne = promptFor("What is the first trait you want to search by?", traitSearch);
+    let multiTraitValueOne = promptFor(`What value do you want to search for in ${multiTraitOne}?`, chars);
+    let multiTraitTwo = promptFor("What is the second trait you want to search by?", traitSearch);
+    let multiTraitValueTwo = promptFor(`What value do you want to search for in ${multiTraitTwo}?`, chars);
+    let userAddThirdTrait = addAnotherTrait()
+    if (userAddThirdTrait === "yes"){
+        let multiTraitThree = promptFor("What is the third trait you want to search by?", traitSearch);
+        let multiTraitValueThree = promptFor(`What value do you want to search for in ${multiTraitThree}?`, chars);
+    }
+    let userAddForthTrait = addAnotherTrait()
+    if (userAddForthTrait === "yes"){
+        let multiTraitFour = promptFor("What is the forth trait you want to search by?", traitSearch);
+        let multiTraitValueFour = promptFor(`What value do you want to search for in ${multiTraitFour}?`, chars);
+    }
+    let userAddFifthTrait = addAnotherTrait()
+    if (userAddFifthTrait === "yes"){
+        let multiTraitFive = promptFor("What is the fifth trait you want to search by?", traitSearch);
+        let multiTraitValueFive = promptFor(`What value do you want to search for in ${multiTraitFive}?`, chars);
+    }
 }
