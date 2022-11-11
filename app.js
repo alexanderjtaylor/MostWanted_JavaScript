@@ -244,7 +244,7 @@ function searchByTraits(people){
             //! TODO #4: Declare a searchByTraits (multiple traits) function //////////////////////////////////////////
                 //! TODO #4a: Provide option to search for single or multiple //////////////////////////////////////////
             searchTrait = searchMulti(people);
-            break;
+            return searchTrait
         default:
             // Re-initializes the app() if neither case was hit above. This is an instance of recursion.
             app(people);
@@ -260,13 +260,6 @@ function searchMulti(people){
 
 }
 
-
-
-
-
-
-
-
 function findPeopleWithTraitValue(people, singleTrait, singleTraitValue){
     let peopleWithTraitValue = people.filter(function(el) {
         if (el[singleTrait] == singleTraitValue) {
@@ -278,7 +271,7 @@ function findPeopleWithTraitValue(people, singleTrait, singleTraitValue){
 
 
 function searchSingle(people) {
-    let singleTrait = promptFor("What trait do you want to search by?", singleTraitSearch).toLowerCase();
+    let singleTrait = promptFor("What trait do you want to search by?", singleTraitSearch);
     let singleTraitValue = promptFor(`What value do you want to search for in ${singleTrait}?`, chars);
     let peopleWithTraitValueArray = findPeopleWithTraitValue(people, singleTrait, singleTraitValue)
     let displayPeopleWithTraitValue = displayPeople(peopleWithTraitValueArray);
@@ -286,7 +279,7 @@ function searchSingle(people) {
 }
 
 function singleTraitSearch(input){
-    return input.toLowerCase() === "id" || input.toLowerCase() === "first name" || input.toLowerCase() === "last name" || input.toLowerCase() === "gender" || input.toLowerCase() === "dob" || input.toLowerCase() === "height" || input.toLowerCase() === "weight" || input.toLowerCase() === "eye color" || input.toLowerCase() === "occupation" || input.toLowerCase() === "parents" || input.toLowerCase() === "current spouse"
+    return input === "id" || input === "firstName" || input === "lastName" || input === "gender" || input === "dob" || input === "height" || input === "weight" || input === "eye color" || input === "occupation" || input === "parents" || input === "currentSpouse"
 }
 
 function singleTraitValueSearch(input){
