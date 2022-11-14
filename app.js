@@ -354,9 +354,9 @@ function searchMulti(people){
     }  
 }
 
-function findPeopleWithTraitValueArray(people, x, y){
+function findPeopleWithTraitValueArray(people, searchingTrait, searchingTraitValue){
     let peopleWithTraitValue = people.filter(function(el) {
-        if (el[x] == y) {
+        if (el[searchingTrait] == searchingTraitValue) {
             return true;
         }
     });
@@ -367,11 +367,9 @@ function numTraitsToSearchBy(input){
     return input == "2" || input == "3" || input == "4" || input == "5";
 }
 
-function compareArrays(x, y){
-    let arrayOne = x
-    let arrayTwo = y
-    let z = arrayOne.filter(function(el) {
+function compareArrays(arrayOne, arrayTwo){
+    let combinedArray = arrayOne.filter(function(el) {
       return arrayTwo.indexOf(el) != -1;
     });
-    return z
+    return combinedArray
 }
