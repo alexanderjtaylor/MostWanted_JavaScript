@@ -32,7 +32,6 @@ function app(people) {
             //! TODO #4: Declare a searchByTraits (multiple traits) function //////////////////////////////////////////
                 //! TODO #4a: Provide option to search for single or multiple //////////////////////////////////////////
             searchResults = searchByTraits(people);
-            alert(searchResults);
             break;
         default:
             // Re-initializes the app() if neither case was hit above. This is an instance of recursion.
@@ -265,13 +264,15 @@ function searchSingle(people) {
     let singleTrait = promptFor("What trait do you want to search by?", traitSearch);
     let singleTraitValue = promptFor(`What value do you want to search for in ${singleTrait}?`, chars);
     let peopleWithTraitValueArray = findPeopleWithTraitValue(people, singleTrait, singleTraitValue)
-    let displayPeopleWithTraitValue = displayPeople(peopleWithTraitValueArray);
-    return displayPeopleWithTraitValue;
+    let string_person = displayPeople(peopleWithTraitValueArray);
+    alert(string_person)
+    return peopleWithTraitValueArray;
 }
 
 function traitSearch(input){
     return input === "id" || input === "firstName" || input === "lastName" || input === "gender" || input === "dob" || input === "height" || input === "weight" || input === "eyeColor" || input === "occupation" || input === "parents" || input === "currentSpouse"
 }
+
 
 function searchMulti(people){
     let numTraitsToSearch = promptFor("How many traits do you want to search by, 2, 3, 4, or 5?", numTraitsToSearchBy);
@@ -286,7 +287,8 @@ function searchMulti(people){
 
         let arrayWithAllTraits = compareArrays(peopleMultiTraitOne, peopleMultiTraitTwo);
         let displayArray = displayPeople(arrayWithAllTraits);
-        return displayArray;
+        alert(displayArray)
+        return arrayWithAllTraits;
 
     } else if (numTraitsToSearch == 3){
         let multiTraitOne = promptFor("What is the first trait you want to search by?", traitSearch);
@@ -303,7 +305,8 @@ function searchMulti(people){
         let comparedArray = compareArrays(peopleMultiTraitOne, peopleMultiTraitTwo);
         let arrayWithAllTraits = compareArrays(comparedArray, peopleMultiTraitThree);
         let displayArray = displayPeople(arrayWithAllTraits);
-        return displayArray;
+        alert(displayArray)
+        return arrayWithAllTraits;
 
     } else if (numTraitsToSearch == 4){
         let multiTraitOne = promptFor("What is the first trait you want to search by?", traitSearch);
@@ -324,7 +327,8 @@ function searchMulti(people){
         let comparedArrayTwo = compareArrays(comparedArray, peopleMultiTraitThree);
         let arrayWithAllTraits = compareArrays(comparedArrayTwo, peopleMultiTraitFour);
         let displayArray = displayPeople(arrayWithAllTraits);
-        return displayArray;
+        alert(displayArray)
+        return arrayWithAllTraits;
 
     } else if (numTraitsToSearch == 5){
         let multiTraitOne = promptFor("What is the first trait you want to search by?", traitSearch);
@@ -349,7 +353,8 @@ function searchMulti(people){
         let comparedArrayThree = compareArrays(comparedArrayTwo, peopleMultiTraitFour);
         let arrayWithAllTraits = compareArrays(comparedArrayThree, peopleMultiTraitFive);
         let displayArray = displayPeople(arrayWithAllTraits);
-        return displayArray;
+        alert(displayArray)
+        return arrayWithAllTraits;
 
     }  
 }
